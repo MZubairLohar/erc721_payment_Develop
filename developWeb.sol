@@ -1028,9 +1028,6 @@ library Strings {
     }
 }
 
-
-
-
 abstract contract ERC165 is IERC165 {
     /*
      * bytes4(keccak256('supportsInterface(bytes4)')) == 0x01ffc9a7
@@ -1112,8 +1109,6 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable 
     // owner 
     address payable ContractOwner;
 
-    // bank
-    address payable Bank;
 
     /*
      *     bytes4(keccak256('balanceOf(address)')) == 0x70a08231
@@ -1536,10 +1531,9 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable 
 
 
 
-contract NFTDoc is ERC721{
-    constructor(address payable _owner, address payable _bank) ERC721('NFTDoc','NFTD') {
+contract deveopWrd is ERC721{
+    constructor(address payable _owner) ERC721('NFTDoc','NFTD') {
         ContractOwner = _owner;
-        Bank = _bank;
     }
     
     
@@ -1551,60 +1545,75 @@ contract NFTDoc is ERC721{
     
     uint _tokenId;
 
-    function setNewToken(address _user, string memory _tokenURI, uint _type) public payable {
-        if( _type == 1  ){
-        require(msg.value == 1.2 ether );    
+    function setNewToken(address _user, string memory _tokenURI) public payable {
+        //if( _type == 1  ){
+         require(msg.value == 1200000000000000000 wei ); 
+        // transferFrom(msg.sender, address(this),1000000000000000000 wei);
+        // transferFrom(msg.sender, ContractOwner ,  200000000000000000 wei);
         _tokenId++;
         uint newItemId = _tokenId;
         _mint(_user , newItemId);
         _setTokenURI(newItemId, _tokenURI);
         purchaseHistory storage pH = _history[newItemId];
         pH.payment = 'Un Paid';
-        }
-        if(_type == 2){
-        require(msg.value == 1.4 ether );
-        _tokenId++;
-        uint newItemId = _tokenId;
-        _mint(_user , newItemId);
-        _setTokenURI(newItemId, _tokenURI);
-        purchaseHistory storage pH = _history[newItemId];
-        pH.payment = 'Un Paid';
-        }
-        if(_type == 3){
-        require(msg.value == 1.6 ether );
-        _tokenId++;
-        uint newItemId = _tokenId;
-        _mint(_user , newItemId);
-        _setTokenURI(newItemId, _tokenURI);
-        purchaseHistory storage pH = _history[newItemId];
-        pH.payment = 'Un Paid';
-        }
-        if(_type == 4){
-        require(msg.value == 1.8 ether );
-        _tokenId++;
-        uint newItemId = _tokenId;
-        _mint(_user , newItemId);
-        _setTokenURI(newItemId, _tokenURI);
-        purchaseHistory storage pH = _history[newItemId];
-        pH.payment = 'Un Paid';
-        }
-        if(_type == 5){
-        require(msg.value == 2 ether );
-        _tokenId++;
-        uint newItemId = _tokenId;
-        _mint(_user , newItemId);
-        _setTokenURI(newItemId, _tokenURI);
-        purchaseHistory storage pH = _history[newItemId];
-        pH.payment = 'Un Paid';
-        }
-        if(_type == 6){
-        require(msg.value == 3 ether );
-        _tokenId++;
-        uint newItemId = _tokenId;
-        _mint(_user , newItemId);
-        _setTokenURI(newItemId, _tokenURI);
-        purchaseHistory storage pH = _history[newItemId];
-        pH.payment = 'Un Paid';
-        }
+        //}
+        // if(_type == 2){
+        // require(msg.value == 1.4 ether );
+        // transferFrom(msg.sender, address(this),1 ether);
+        // transferFrom(msg.sender, ContractOwner , 0.4 ether);
+        // _tokenId++;
+        // uint newItemId = _tokenId;
+        // _mint(_user , newItemId);
+        // _setTokenURI(newItemId, _tokenURI);
+        // purchaseHistory storage pH = _history[newItemId];
+        // pH.payment = 'Un Paid';
+        // }
+        // if(_type == 3){
+        // require(msg.value == 1.6 ether );
+        // transferFrom(msg.sender, address(this),1 ether);
+        // transferFrom(msg.sender, ContractOwner , 0.6 ether);
+        // _tokenId++;
+        // uint newItemId = _tokenId;
+        // _mint(_user , newItemId);
+        // _setTokenURI(newItemId, _tokenURI);
+        // purchaseHistory storage pH = _history[newItemId];
+        // pH.payment = 'Un Paid';
+        // }
+        // if(_type == 4){
+        // require(msg.value == 1.8 ether );
+        // transferFrom(msg.sender, address(this),1 ether);
+        // transferFrom(msg.sender, ContractOwner , 0.8 ether);
+        // _tokenId++;
+        // uint newItemId = _tokenId;
+        // _mint(_user , newItemId);
+        // _setTokenURI(newItemId, _tokenURI);
+        // purchaseHistory storage pH = _history[newItemId];
+        // pH.payment = 'Un Paid';
+        // }
+        // if(_type == 5){
+        // require(msg.value == 2 ether );
+        // transferFrom(msg.sender, address(this),1 ether);
+        // transferFrom(msg.sender, ContractOwner , 1 ether);
+        // _tokenId++;
+        // uint newItemId = _tokenId;
+        // _mint(_user , newItemId);
+        // _setTokenURI(newItemId, _tokenURI);
+        // purchaseHistory storage pH = _history[newItemId];
+        // pH.payment = 'Un Paid';
+        // }
+        // if(_type == 6){
+        // require(msg.value == 3 ether );
+        // transferFrom(msg.sender, address(this),1 ether);
+        // transferFrom(msg.sender, ContractOwner , 2 ether);
+        // _tokenId++;
+        // uint newItemId = _tokenId;
+        // _mint(_user , newItemId);
+        // _setTokenURI(newItemId, _tokenURI);
+        // purchaseHistory storage pH = _history[newItemId];
+        // pH.payment = 'Un Paid';
+        // }
+    }
+    function __tokenURI(uint256 __tokenId) public view {
+        tokenURI(__tokenId);
     }
 }
